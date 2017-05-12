@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.upreckless.support.hashtagswall.domain.RestApi;
 import com.upreckless.support.hashtagswall.domain.data.Post;
+import com.upreckless.support.hashtagswall.domain.entity.AuthorEntity;
 import com.upreckless.support.hashtagswall.domain.entity.PostEntity;
 import com.upreckless.support.hashtagswall.domain.entity.TagEntity;
 import com.upreckless.support.hashtagswall.util.Helper;
@@ -44,10 +45,15 @@ public class PostRepositoryImpl implements PostRepository {
         for (Post post :
                 posts) {
             realm.executeTransaction(realm1 -> {
+                AuthorEntity authorEntity=realm1.where(AuthorEntity.class).equalTo("id",post.getAuthor().getId()).findFirst();
+                if (authorEntity==null)
+                    authorEntity=realm1.createObject(AuthorEntity.class,post.getAuthor().getId());
+            });
+            realm.executeTransaction(realm1 -> {
                 PostEntity postEntity = realm1.createObject(PostEntity.class, post.getId());
+                AuthorEntity authorEntity=realm1.where(AuthorEntity.class).equalTo("id",post.getAuthor().getId()).findFirst();
                 postEntity.setTitle(post.getTitle());
-                postEntity.setAuthorName(post.getAuthorName());
-                postEntity.setAuthorThumb(post.getAuthorThumbRef());
+                postEntity.setAuthorEntity(authorEntity);
                 postEntity.setDate(post.getTime());
                 postEntity.setText(post.getText());
             });

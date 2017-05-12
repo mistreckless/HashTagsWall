@@ -10,11 +10,10 @@ import io.realm.annotations.PrimaryKey;
 public class PostEntity extends RealmObject {
     @PrimaryKey
     private int id;
-    private String authorName;
-    private String authorThumb;
     private String title;
     private String text;
     private long date;
+    private AuthorEntity authorEntity;
 
     public int getId() {
         return id;
@@ -22,22 +21,6 @@ public class PostEntity extends RealmObject {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
-
-    public String getAuthorThumb() {
-        return authorThumb;
-    }
-
-    public void setAuthorThumb(String authorThumb) {
-        this.authorThumb = authorThumb;
     }
 
     public String getTitle() {
@@ -62,5 +45,13 @@ public class PostEntity extends RealmObject {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public AuthorEntity getAuthorEntity() {
+        return authorEntity;
+    }
+
+    public void setAuthorEntity(AuthorEntity authorEntity) {
+        this.authorEntity = authorEntity;
     }
 }

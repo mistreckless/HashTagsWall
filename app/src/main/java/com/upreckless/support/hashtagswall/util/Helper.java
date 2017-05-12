@@ -1,7 +1,5 @@
 package com.upreckless.support.hashtagswall.util;
 
-import android.util.Log;
-
 import com.upreckless.support.hashtagswall.domain.data.Post;
 import com.upreckless.support.hashtagswall.domain.entity.PostEntity;
 import com.upreckless.support.hashtagswall.ui.model.PostModel;
@@ -26,8 +24,8 @@ public class Helper {
 
     public static PostModel convertPostToPostModel(Post post) {
         PostModel postModel = new PostModel();
-        postModel.setAuthorName(post.getAuthorName());
-        postModel.setAuthorThumb(post.getAuthorThumbRef());
+        postModel.setAuthorName(post.getAuthor().getName());
+        postModel.setAuthorThumb(post.getAuthor().getPhotoRef());
         postModel.setDate(post.getTime());
         postModel.setTitle(post.getTitle());
         postModel.setText(Arrays.asList(post.getText().split(" ")));
@@ -55,11 +53,11 @@ public class Helper {
     }
     public static PostModel convertPostEntityToPostModel(PostEntity postEntity){
         PostModel postModel=new PostModel();
-        postModel.setAuthorName(postEntity.getAuthorName());
+        postModel.setAuthorName(postEntity.getAuthorEntity().getName());
         postModel.setDate(postEntity.getDate());
         postModel.setText(Arrays.asList(postEntity.getText().split(" ")));
         postModel.setTitle(postEntity.getTitle());
-        postModel.setAuthorThumb(postEntity.getAuthorThumb());
+        postModel.setAuthorThumb(postEntity.getAuthorEntity().getPhotoRef());
         return postModel;
     }
 }

@@ -6,18 +6,16 @@ package com.upreckless.support.hashtagswall.domain.data;
 
 public class Post {
     private int id;
-    private String authorName;
-    private String authorThumbRef;
+    private Author author;
     private String title;
     private long time;
     private String text;
 
     public Post(){}
 
-    public Post(int id, String authorName, String authorThumbRef, String title, long time, String text) {
+    public Post(int id, Author author, String title, long time, String text) {
         this.id = id;
-        this.authorName = authorName;
-        this.authorThumbRef = authorThumbRef;
+        this.author=author;
         this.title = title;
         this.time = time;
         this.text = text;
@@ -31,20 +29,12 @@ public class Post {
         this.id = id;
     }
 
-    public String getAuthorName() {
-        return authorName;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
-
-    public String getAuthorThumbRef() {
-        return authorThumbRef;
-    }
-
-    public void setAuthorThumbRef(String authorThumbRef) {
-        this.authorThumbRef = authorThumbRef;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public String getTitle() {
