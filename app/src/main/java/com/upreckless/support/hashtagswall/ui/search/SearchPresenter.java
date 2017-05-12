@@ -13,7 +13,6 @@ import com.upreckless.support.hashtagswall.util.Word;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
 /**
@@ -35,8 +34,6 @@ class SearchPresenter extends BasePresenter<SearchView, MainActivityRouter> {
         if (disposable == null || disposable.isDisposed())
             disposable = Observable.just(postRepository.getPostsByTag(tag))
                     .map(Helper::convertPostEntitiesToPostModels)
-                    // .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(getView()::setPosts);
 
     }
